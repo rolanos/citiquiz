@@ -22,8 +22,13 @@ class PasswordValidator extends Validator {
     if (str.isEmpty) {
       return false;
     } else {
-      if (str.length < 7) {
+      if (str.length < 6) {
         return false;
+      }
+      if (RegExp(
+              r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+          .hasMatch(str)) {
+        return true;
       }
       return true;
     }
