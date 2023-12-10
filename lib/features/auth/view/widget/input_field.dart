@@ -16,7 +16,7 @@ class InputField extends StatelessWidget {
           vertical: 2.0,
           horizontal: 18.0,
         ),
-        label: Icon(
+        prefixIcon: Icon(
           prefixIcon,
           color: ColorsUI.lime,
         ),

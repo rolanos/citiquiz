@@ -60,7 +60,9 @@ class _AuthScreenState extends State<AuthScreen> {
                     }),
                     child: AutoSizeText(
                       'Вход',
-                      style: textTheme.bodyLarge!.copyWith(fontSize: 24),
+                      style: isLogIn == false
+                          ? textTheme.bodyMedium!.copyWith(fontSize: 24)
+                          : textTheme.bodyLarge!.copyWith(fontSize: 24),
                     ),
                   ),
                   const SizedBox(
@@ -72,7 +74,9 @@ class _AuthScreenState extends State<AuthScreen> {
                     }),
                     child: AutoSizeText(
                       'Регистрация',
-                      style: textTheme.bodyLarge!.copyWith(fontSize: 24),
+                      style: isLogIn == true
+                          ? textTheme.bodyMedium!.copyWith(fontSize: 24)
+                          : textTheme.bodyLarge!.copyWith(fontSize: 24),
                     ),
                   ),
                 ],
@@ -123,7 +127,7 @@ Widget logIn() {
       ),
       const InputField(
         hintText: 'Введите пароль',
-        prefixIcon: Icons.security,
+        prefixIcon: Icons.https,
       ),
       const SizedBox(
         height: 16.0,
