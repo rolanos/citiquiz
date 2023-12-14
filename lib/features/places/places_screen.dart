@@ -17,13 +17,6 @@ class PlacesScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Новости",
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      color: ColorsUI.black,
-                      fontSize: 32,
-                    ),
-              ),
               const SizedBox(
                 height: 24.0,
               ),

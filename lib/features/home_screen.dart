@@ -12,6 +12,16 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+getAppbarTitle(int index) {
+  switch (index) {
+    case 0:
+      return "Новости";
+    case 1:
+      return "Места";
+    default:
+  }
+}
+
 class _HomeScreenState extends State<HomeScreen> {
   int navIndex = 0;
   bool isGameSelected = false;
@@ -25,6 +35,19 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+          child: Text(
+            getAppbarTitle(navIndex),
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: ColorsUI.black,
+                  fontSize: 32,
+                ),
+          ),
+        ),
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -68,16 +91,22 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Новости',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.location_on,
+            icon: Padding(
+              padding: EdgeInsets.only(right: 8.0),
+              child: Icon(
+                Icons.location_on,
+              ),
             ),
-            label: 'Места',
+            label: 'Места   ',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.headphones,
+            icon: Padding(
+              padding: EdgeInsets.only(left: 8.0),
+              child: Icon(
+                Icons.headphones,
+              ),
             ),
-            label: 'Поддержка',
+            label: '  Поддержка',
           ),
           BottomNavigationBarItem(
             icon: Icon(
