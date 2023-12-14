@@ -34,36 +34,24 @@ class PlacesScreen extends StatelessWidget {
                 physics: const ScrollPhysics(),
                 children: [
                   CustomCard(
-                    name: 'Новые вопросы уже доступны',
-                    description: 'Описание новости',
+                    name: 'Место 1',
+                    description: 'Описание места',
                     date: '10.10.2010',
-                    image: Image.asset(
-                      "asset/images/almaty.jpg",
-                    ),
                   ),
                   CustomCard(
-                    name: 'Новость 2',
-                    description: 'Описание новости',
+                    name: 'Место 2',
+                    description: 'Описание места',
                     date: '10.10.2010',
-                    image: Image.asset(
-                      "asset/images/almaty.jpg",
-                    ),
                   ),
                   CustomCard(
                     name: 'Место 3',
-                    description: 'Описание новости',
+                    description: 'Описание места',
                     date: '10.10.2010',
-                    image: Image.asset(
-                      "asset/images/almaty.jpg",
-                    ),
                   ),
                   CustomCard(
                     name: 'Место 4',
-                    description: 'Описание новости',
+                    description: 'Описание места',
                     date: '10.10.2010',
-                    image: Image.asset(
-                      "asset/images/almaty.jpg",
-                    ),
                   ),
                 ],
               ),
