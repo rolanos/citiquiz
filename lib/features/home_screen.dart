@@ -33,30 +33,38 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        selectedFontSize: 0,
         type: BottomNavigationBarType.fixed,
         currentIndex: navIndex,
+        backgroundColor: Colors.black,
         onTap: (value) {
           setState(() {
             navIndex = value;
           });
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(
-            icon: _buildIcon(Icons.newspaper, 'Новости', 0, navIndex),
-            label: '',
+            icon: Icon(
+              Icons.newspaper,
+            ),
+            label: 'Новости',
           ),
           BottomNavigationBarItem(
-            icon: _buildIcon(Icons.location_on, 'Места', 1, navIndex),
-            label: '',
+            icon: Icon(
+              Icons.location_on,
+            ),
+            label: 'Места',
           ),
           BottomNavigationBarItem(
-            icon: _buildIcon(Icons.headphones, 'Профиль', 2, navIndex),
-            label: '',
+            icon: Icon(
+              Icons.headphones,
+            ),
+            label: 'Поддержка',
           ),
           BottomNavigationBarItem(
-            icon: _buildIcon(Icons.person, 'Профиль', 3, navIndex),
-            label: '',
+            icon: Icon(
+              Icons.person,
+            ),
+            label: 'Профиль',
           ),
         ],
       ),
@@ -67,26 +75,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-Widget _buildIcon(IconData iconData, String text, int index, int navIndex) =>
-    Container(
-      width: double.infinity,
-      height: kBottomNavigationBarHeight,
-      child: Material(
-        color: index == navIndex ? ColorsUI.lime : ColorsUI.black,
-        child: InkWell(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Icon(
-                iconData,
-                color: Colors.white,
-              ),
-              Text(
-                text,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
