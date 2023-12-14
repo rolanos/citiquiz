@@ -1,5 +1,6 @@
 import 'package:citiquiz/features/core/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'news/news_screen.dart';
 import 'places/places_screen.dart';
@@ -13,6 +14,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int navIndex = 0;
+  bool isGameSelected = false;
+
   List<Widget> pages = [
     NewsScreen(),
     PlacesScreen(),
@@ -24,12 +27,27 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            isGameSelected = true;
+          });
+        },
         backgroundColor: ColorsUI.lime,
         shape: const CircleBorder(),
-        child: const Text(
-          '+',
-          style: TextStyle(fontSize: 38),
+        child: Padding(
+          padding: EdgeInsets.all(6.0),
+          child: SvgPicture.asset(
+            "asset/icons/game_outline.svg",
+            colorFilter: (isGameSelected)
+                ? ColorFilter.mode(
+                    ColorsUI.lime,
+                    BlendMode.srcIn,
+                  )
+                : ColorFilter.mode(
+                    ColorsUI.white,
+                    BlendMode.srcIn,
+                  ),
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -39,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: (value) {
           setState(() {
             navIndex = value;
+            isGameSelected = false;
           });
         },
         items: const [

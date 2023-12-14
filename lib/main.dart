@@ -1,3 +1,4 @@
+import 'package:citiquiz/features/auth/view/auth_screen.dart';
 import 'package:citiquiz/features/core/theme.dart';
 import 'package:flutter/material.dart';
 import 'features/auth/view/splash_screen.dart';
