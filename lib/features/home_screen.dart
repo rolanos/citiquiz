@@ -1,9 +1,12 @@
 import 'package:citiquiz/features/core/colors.dart';
+import 'package:citiquiz/features/support/support_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'news/news_screen.dart';
 import 'places/places_screen.dart';
+import 'play/play_screen.dart';
+import 'profil/profil_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,7 +21,12 @@ getAppbarTitle(int index) {
       return "Новости";
     case 1:
       return "Места";
+    case 2:
+      return "О нас";
+    case 3:
+      return "Профиль";
     default:
+      return "";
   }
 }
 
@@ -29,8 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> pages = [
     NewsScreen(),
     PlacesScreen(),
-    const Placeholder(),
-    const Placeholder(),
+    const SupportScreen(),
+    const ProfilScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -54,6 +62,8 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() {
             isGameSelected = true;
           });
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => PlayScreen()));
         },
         backgroundColor: ColorsUI.lime,
         shape: const CircleBorder(),

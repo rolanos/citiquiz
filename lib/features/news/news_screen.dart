@@ -27,35 +27,48 @@ class NewsScreen extends StatelessWidget {
                 physics: const ScrollPhysics(),
                 children: [
                   CustomCard(
-                    name: 'Новые вопросы уже доступны',
-                    description: 'Описание новости',
-                    date: '10.10.2010',
+                    name: 'Приложение CITIQUIZ было запущено впервые!',
+                    description:
+                        'Дорогие друзья и партнеры, мобильное приложение нашего стартапа CITIQUIZ было успешно запущено в первый раз и в скором времени будет обновляться.',
+                    date: '10.12.2023',
                     image: Image.asset(
-                      "asset/images/almaty.jpg",
+                      "asset/images/news1.jpg",
                     ),
                   ),
                   CustomCard(
-                    name: 'Новость 2',
-                    description: 'Описание новости',
-                    date: '10.10.2010',
+                    name: 'В приложении CITIQUIZ добавлены новые разделы',
+                    description:
+                        'В нашем мобильном приложении доработана Главная страница, страница вашего Профиля, а также сканера QR-кода.',
+                    date: '14.12.2023',
                     image: Image.asset(
-                      "asset/images/almaty.jpg",
+                      "asset/images/news2.jpg",
                     ),
                   ),
                   CustomCard(
-                    name: 'Место 3',
-                    description: 'Описание новости',
-                    date: '10.10.2010',
+                    name: 'Приложение CITIQUIZ расширяется',
+                    description:
+                        'Рады вам сообщить, что в ближайшее время в приложении будет реализована функциональность проходить увлекательные квизы! Сейчас же наша команда активно рабоатает над составлением и корректировкой вопросов для квизов.',
+                    date: '15.12.2023',
                     image: Image.asset(
-                      "asset/images/almaty.jpg",
+                      "asset/images/news3.jpg",
                     ),
                   ),
                   CustomCard(
-                    name: 'Место 4',
-                    description: 'Описание новости',
-                    date: '10.10.2010',
+                    name: 'Предлагайте свои вопросы для квизов',
+                    description:
+                        'Описание: Уважаемые пользователи, вы можете предложить свои вопросы и правильные ответы к ним отправив их к нам на корпоративную почту quiz_mobile@citiquiz.com',
+                    date: '15.12.2023',
                     image: Image.asset(
-                      "asset/images/almaty.jpg",
+                      "asset/images/news4.jpg",
+                    ),
+                  ),
+                  CustomCard(
+                    name: 'Нам нужны инвесторы',
+                    description:
+                        'Описание: Нашему стартапу требуются инвесторы. Чтобы узнать подробности свяжитесь с нами через нашу корпоративную почту invest@citiquiz.com',
+                    date: '17.12.2023',
+                    image: Image.asset(
+                      "asset/images/news5.jpg",
                     ),
                   ),
                 ],

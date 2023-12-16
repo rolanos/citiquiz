@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:citiquiz/features/core/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -30,6 +31,7 @@ class CustomCard extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
+            flex: 2,
             child: Column(
               children: [
                 Align(
@@ -48,17 +50,23 @@ class CustomCard extends StatelessWidget {
                   alignment: Alignment.bottomLeft,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 12.0, bottom: 12.0),
-                    child: Text(
+                    child: AutoSizeText(
                       description,
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
                       style: textTheme.titleMedium!
-                          .copyWith(color: ColorsUI.black, fontSize: 14),
+                          .copyWith(color: ColorsUI.black, fontSize: 10),
                     ),
                   ),
                 ),
               ],
             ),
           ),
+          SizedBox(
+            width: 10.0,
+          ),
           Expanded(
+            flex: 1,
             child: Column(
               children: [
                 Align(
@@ -77,7 +85,7 @@ class CustomCard extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomRight,
                     child: SizedBox(
-                      height: size.height * 0.12,
+                      //height: size.height * 0.11,
                       child: ClipRRect(
                           borderRadius: BorderRadius.all(
                             Radius.circular(6.0),

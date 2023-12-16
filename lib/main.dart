@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       create: (context) => AuthenticationBloc(),
       child: MaterialApp(
         theme: getTheme(),
-        home: AuthScreen(),
+        home: isOnboarding ? AuthScreen() : HomeScreen(),
       ),
     );
   }
