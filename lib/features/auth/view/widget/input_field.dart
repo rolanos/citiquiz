@@ -6,14 +6,15 @@ class InputField extends StatelessWidget {
   final String hintText;
   final IconData prefixIcon;
   final Validator validator;
-
+  final TextEditingController controller;
   bool _validation = false;
 
   InputField(
       {super.key,
       required this.hintText,
       required this.prefixIcon,
-      required this.validator});
+      required this.validator,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,7 @@ class InputField extends StatelessWidget {
     return Form(
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: TextFormField(
+        controller: controller,
         validator: (value) {
           if (value == null) {
             return 'Ошибка ввода';

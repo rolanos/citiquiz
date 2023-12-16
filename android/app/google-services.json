@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "585862733617",
+    "project_id": "citiquiz-91848",
+    "storage_bucket": "citiquiz-91848.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585862733617:android:381b83b7a54a0aaea0da10",
+        "android_client_info": {
+          "package_name": "com.example.citiquiz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVqDxpYmEakHlc4rtrY_EHka4x2NvpF8E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
