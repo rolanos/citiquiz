@@ -13,6 +13,14 @@ class AuthenticationBloc
   AuthenticationRepository authenticationRepository =
       AuthenticationRepositoryImpl();
   AuthenticationBloc() : super(AuthInitial()) {
+    on<Init>((event, emit) async {
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      String? email = preferences.getString('email');
+      String? password = preferences.getString('password');
+      if (email != null && password != null) {
+        add(SignIn(email: email, password: password));
+      }
+    });
     on<SignIn>((event, emit) async {
       emit(AuthLoading());
       try {

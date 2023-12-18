@@ -16,9 +16,13 @@ import "package:story_view/story_view.dart";
 class MainScreen extends StatelessWidget {
   final Function() newsCallback;
   final Function() placesCallback;
+  final Function() profilCallback;
   final StoryController controller = StoryController();
   MainScreen(
-      {super.key, required this.newsCallback, required this.placesCallback});
+      {super.key,
+      required this.newsCallback,
+      required this.placesCallback,
+      required this.profilCallback});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +53,6 @@ class MainScreen extends StatelessWidget {
     TextTheme textTheme = Theme.of(context).textTheme;
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 32, vertical: 84),
         width: size.width,
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -71,32 +74,44 @@ class MainScreen extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Image.asset(
-                        "asset/images/citiquiz.png",
-                        width: size.width * 0.3,
-                      ),
-                      Spacer(),
-                      Container(
-                        padding: EdgeInsets.all(2.0),
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(4.0),
+                  Padding(
+                    padding: EdgeInsets.only(left: 32, top: 84),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          "asset/images/citiquiz.png",
+                          width: size.width * 0.3,
                         ),
-                        child: Text(
-                          "Профиль",
-                          style: textTheme.bodyLarge!.copyWith(fontSize: 11),
+                        Spacer(),
+                        GestureDetector(
+                          onTap: () {
+                            profilCallback();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(2.0),
+                            decoration: BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius: BorderRadius.circular(4.0),
+                            ),
+                            child: Text(
+                              "Профиль",
+                              style:
+                                  textTheme.bodyLarge!.copyWith(fontSize: 11),
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 16.0,
                   ),
-                  Text(
-                    "Привет ${nick ?? "-"}",
-                    style: textTheme.bodyLarge,
+                  Padding(
+                    padding: EdgeInsets.only(left: 32),
+                    child: Text(
+                      "Привет ${nick ?? "-"}",
+                      style: textTheme.bodyLarge,
+                    ),
                   ),
                   SizedBox(
                     height: 16.0,
@@ -116,6 +131,7 @@ class MainScreen extends StatelessWidget {
                             ),
                             child: Container(
                               padding: EdgeInsets.all(2.0),
+                              margin: EdgeInsets.only(left: 32, bottom: 84),
                               decoration: BoxDecoration(
                                 color: ColorsUI.lime,
                                 borderRadius: BorderRadius.circular(4.0),
@@ -150,165 +166,180 @@ class MainScreen extends StatelessWidget {
                       }
                     },
                   ),
-                  SizedBox(
-                    height: size.height * 0.15,
-                  ),
-                  SizedBox(
-                    height: size.height * 0.15,
-                    child: GestureDetector(
-                      onTap: () => Navigator.of(context).push(
-                        PageRouteBuilder(
-                          pageBuilder: (_, __, ___) => StoryWidget(
-                            storyItems: storyItems,
-                            controller: controller,
-                          ),
-                          transitionDuration: const Duration(milliseconds: 370),
-                          transitionsBuilder: (_, a, __, c) =>
-                              FadeTransition(opacity: a, child: c),
-                        ),
-                      ),
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        children: [
-                          StoryWidgetContainer(
-                            text: "Сторис 1",
-                            assetPath: 'asset/images/almaty.jpg',
-                          ),
-                          SizedBox(
-                            width: 8.0,
-                          ),
-                          StoryWidgetContainer(
-                            text: "Сторис 2",
-                            assetPath: 'asset/images/almaty.jpg',
-                          ),
-                          SizedBox(
-                            width: 8.0,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 24.0,
-                  ),
-                  Text(
-                    "Новости",
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: ColorsUI.black,
-                          fontSize: 20,
-                        ),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                  Container(
+                    width: size.width,
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 32, vertical: 24.0),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(32.0))),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            newsCallback();
-                          },
-                          child: Text(
-                            "См. все >",
-                            style: textTheme.bodyMedium!
-                                .copyWith(color: Colors.black),
+                        SizedBox(
+                          height: size.height * 0.15,
+                          child: GestureDetector(
+                            onTap: () => Navigator.of(context).push(
+                              PageRouteBuilder(
+                                pageBuilder: (_, __, ___) => StoryWidget(
+                                  storyItems: storyItems,
+                                  controller: controller,
+                                ),
+                                transitionDuration:
+                                    const Duration(milliseconds: 370),
+                                transitionsBuilder: (_, a, __, c) =>
+                                    FadeTransition(opacity: a, child: c),
+                              ),
+                            ),
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              children: [
+                                StoryWidgetContainer(
+                                  text: "Сторис 1",
+                                  assetPath: 'asset/images/almaty.jpg',
+                                ),
+                                SizedBox(
+                                  width: 8.0,
+                                ),
+                                StoryWidgetContainer(
+                                  text: "Сторис 2",
+                                  assetPath: 'asset/images/almaty.jpg',
+                                ),
+                                SizedBox(
+                                  width: 8.0,
+                                ),
+                              ],
+                            ),
                           ),
-                        )
+                        ),
+                        SizedBox(
+                          height: 24.0,
+                        ),
+                        Text(
+                          "Новости",
+                          style:
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    color: ColorsUI.black,
+                                    fontSize: 20,
+                                  ),
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  newsCallback();
+                                },
+                                child: Text(
+                                  "См. все >",
+                                  style: textTheme.bodyMedium!
+                                      .copyWith(color: Colors.black),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: size.height * 0.1,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            children: [
+                              NewsWidget(text: "Новость 1"),
+                              SizedBox(
+                                width: 8.0,
+                              ),
+                              NewsWidget(text: "Новость 2"),
+                              SizedBox(
+                                width: 8.0,
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 24.0,
+                        ),
+                        Text(
+                          "Партнеры",
+                          style:
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    color: ColorsUI.black,
+                                    fontSize: 20,
+                                  ),
+                        ),
+                        SizedBox(
+                          height: 16.0,
+                        ),
+                        SizedBox(
+                          height: size.width * 0.2,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            children: [
+                              PartnerWidget(text: "Новость 1"),
+                              SizedBox(
+                                width: 8.0,
+                              ),
+                              PartnerWidget(text: "Новость 2"),
+                              SizedBox(
+                                width: 8.0,
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 24.0,
+                        ),
+                        Text(
+                          "Достопримечательности",
+                          style:
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    color: ColorsUI.black,
+                                    fontSize: 20,
+                                  ),
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  placesCallback();
+                                },
+                                child: Text(
+                                  "См. все >",
+                                  style: textTheme.bodyMedium!
+                                      .copyWith(color: Colors.black),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: size.width * 0.2,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            children: [
+                              NewsWidget(text: "Место 1"),
+                              SizedBox(
+                                width: 8.0,
+                              ),
+                              NewsWidget(text: "Место 2"),
+                              SizedBox(
+                                width: 8.0,
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: size.height * 0.1,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      children: [
-                        NewsWidget(text: "Новость 1"),
-                        SizedBox(
-                          width: 8.0,
-                        ),
-                        NewsWidget(text: "Новость 2"),
-                        SizedBox(
-                          width: 8.0,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 24.0,
-                  ),
-                  Text(
-                    "Партнеры",
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: ColorsUI.black,
-                          fontSize: 20,
-                        ),
-                  ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
-                  SizedBox(
-                    height: size.width * 0.2,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      children: [
-                        PartnerWidget(text: "Новость 1"),
-                        SizedBox(
-                          width: 8.0,
-                        ),
-                        PartnerWidget(text: "Новость 2"),
-                        SizedBox(
-                          width: 8.0,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 24.0,
-                  ),
-                  Text(
-                    "Достопримечательности",
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: ColorsUI.black,
-                          fontSize: 20,
-                        ),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            placesCallback();
-                          },
-                          child: Text(
-                            "См. все >",
-                            style: textTheme.bodyMedium!
-                                .copyWith(color: Colors.black),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: size.width * 0.2,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      children: [
-                        NewsWidget(text: "Место 1"),
-                        SizedBox(
-                          width: 8.0,
-                        ),
-                        NewsWidget(text: "Место 2"),
-                        SizedBox(
-                          width: 8.0,
-                        ),
-                      ],
-                    ),
-                  ),
+                  )
                 ],
               );
             }),

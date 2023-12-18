@@ -52,6 +52,11 @@ class _HomeScreenState extends State<HomeScreen> {
             navIndex = 2;
           });
         },
+        profilCallback: () {
+          setState(() {
+            navIndex = 3;
+          });
+        },
       ),
       NewsScreen(),
       const PlacesScreen(),

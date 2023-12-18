@@ -18,4 +18,6 @@ class SignUp extends AuthenticationEvent {
   SignUp({required this.nick, required this.email, required this.password});
 }
 
-class LogOut extends AuthenticationEvent{}
+class LogOut extends AuthenticationEvent {}
+
+class Init extends AuthenticationEvent {}
