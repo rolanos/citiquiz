@@ -3,6 +3,7 @@ import 'package:citiquiz/features/main/main_screen.dart';
 import 'package:citiquiz/features/support/support_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import "package:story_view/story_view.dart";
 
 import 'news/news_screen.dart';
 import 'places/places_screen.dart';
@@ -36,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isGameSelected = false;
 
   List<Widget> pages = [
-    const MainScreen(),
+    MainScreen(),
     NewsScreen(),
     const PlacesScreen(),
     const ProfilScreen(),

@@ -7,12 +7,41 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'widgets/news_widget.dart';
+import "package:story_view/story_view.dart";
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+  final StoryController controller = StoryController();
+  MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List<StoryItem> storyItems = [
+      StoryItem.inlineImage(
+        url:
+            "https://mykaleidoscope.ru/x/uploads/posts/2022-09/1663200247_14-mykaleidoscope-ru-p-gorod-almati-kazakhstan-oboi-15.jpg",
+        controller: controller,
+        roundedBottom: true,
+      ),
+      StoryItem.inlineImage(
+        url:
+            "https://static.tildacdn.com/tild3561-3066-4965-b234-636538356561/_3.jpg",
+        controller: controller,
+        roundedBottom: true,
+      ),
+      StoryItem.inlineImage(
+        url:
+            "https://mykaleidoscope.ru/x/uploads/posts/2022-09/1663219067_19-mykaleidoscope-ru-p-kazakhstan-stolitsa-almati-pinterest-19.jpg",
+        controller: controller,
+        roundedBottom: true,
+      ),
+      StoryItem.inlineImage(
+        url:
+            "https://sportishka.com/uploads/posts/2022-04/1650612019_66-sportishka-com-p-gorod-almati-kazakhstan-krasivo-foto-72.jpg",
+        roundedBottom: true,
+        controller: controller,
+      ),
+    ];
+
     Size size = MediaQuery.of(context).size;
     TextTheme textTheme = Theme.of(context).textTheme;
     return SingleChildScrollView(
@@ -85,22 +114,19 @@ class MainScreen extends StatelessWidget {
                     height: size.height * 0.12,
                   ),
                   SizedBox(
-                    height: size.height * 0.2,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      children: [
-                        StoryWidget(text: "Сторис 1"),
-                        SizedBox(
-                          width: 8.0,
+                    height: size.width,
+                    child: StoryView(
+                        storyItems: storyItems,
+                        controller: controller, // pass controller here too
+                        repeat: true, // should the stories be slid forever
+                        onComplete: () {},
+                        onVerticalSwipeComplete: (direction) {
+                          if (direction == Direction.down) {
+                            Navigator.pop(context);
+                          }
+                        } // To disable vertical swipe gestures, ignore this parameter.
+                        // Preferrably for inline story view.f
                         ),
-                        StoryWidget(text: "Сторис 2"),
-                        SizedBox(
-                          width: 8.0,
-                        ),
-                        StoryWidget(text: "Сторис 3"),
-                      ],
-                    ),
                   ),
                   SizedBox(
                     height: 24.0,
