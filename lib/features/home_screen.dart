@@ -35,13 +35,30 @@ getAppbarTitle(int index) {
 class _HomeScreenState extends State<HomeScreen> {
   int navIndex = 0;
   bool isGameSelected = false;
+  List<Widget> pages = [];
+  @override
+  @override
+  void initState() {
+    super.initState();
+    pages = [
+      MainScreen(
+        newsCallback: () {
+          setState(() {
+            navIndex = 1;
+          });
+        },
+        placesCallback: () {
+          setState(() {
+            navIndex = 2;
+          });
+        },
+      ),
+      NewsScreen(),
+      const PlacesScreen(),
+      const ProfilScreen(),
+    ];
+  }
 
-  List<Widget> pages = [
-    MainScreen(),
-    NewsScreen(),
-    const PlacesScreen(),
-    const ProfilScreen(),
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -14,8 +14,11 @@ import 'widgets/news_widget.dart';
 import "package:story_view/story_view.dart";
 
 class MainScreen extends StatelessWidget {
+  final Function() newsCallback;
+  final Function() placesCallback;
   final StoryController controller = StoryController();
-  MainScreen({super.key});
+  MainScreen(
+      {super.key, required this.newsCallback, required this.placesCallback});
 
   @override
   Widget build(BuildContext context) {
@@ -148,10 +151,10 @@ class MainScreen extends StatelessWidget {
                     },
                   ),
                   SizedBox(
-                    height: size.height * 0.12,
+                    height: size.height * 0.15,
                   ),
                   SizedBox(
-                    height: size.height * 0.2,
+                    height: size.height * 0.15,
                     child: GestureDetector(
                       onTap: () => Navigator.of(context).push(
                         PageRouteBuilder(
@@ -197,7 +200,22 @@ class MainScreen extends StatelessWidget {
                         ),
                   ),
                   SizedBox(
-                    height: 16.0,
+                    height: 20.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            newsCallback();
+                          },
+                          child: Text(
+                            "См. все >",
+                            style: textTheme.bodyMedium!
+                                .copyWith(color: Colors.black),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: size.height * 0.1,
@@ -257,7 +275,22 @@ class MainScreen extends StatelessWidget {
                         ),
                   ),
                   SizedBox(
-                    height: 16.0,
+                    height: 20.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            placesCallback();
+                          },
+                          child: Text(
+                            "См. все >",
+                            style: textTheme.bodyMedium!
+                                .copyWith(color: Colors.black),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: size.width * 0.2,

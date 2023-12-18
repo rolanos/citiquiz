@@ -12,7 +12,7 @@ class StoryWidgetContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.2,
+      height: size.height * 0.15,
       width: size.width * 0.2,
       decoration: BoxDecoration(
         color: ColorsUI.red,

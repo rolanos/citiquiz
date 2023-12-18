@@ -45,5 +45,6 @@ class AuthenticationBloc
         emit(AuthError());
       }
     });
+    on<LogOut>((event, emit) => emit(AuthInitial()));
   }
 }
