@@ -3,9 +3,12 @@ import 'dart:ui';
 import 'package:citiquiz/features/core/colors.dart';
 import 'package:citiquiz/features/main/widgets/partner_widget.dart';
 import 'package:citiquiz/features/main/widgets/story_widget.dart';
+import 'package:citiquiz/features/qr/bloc/qr_bloc.dart';
+import 'package:citiquiz/features/qr/qr_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:qr_flutter/qr_flutter.dart';
 import 'widgets/news_widget.dart';
 import "package:story_view/story_view.dart";
 
@@ -98,17 +101,54 @@ class MainScreen extends StatelessWidget {
                   SizedBox(
                     height: 16.0,
                   ),
-                  Container(
-                    padding: EdgeInsets.all(2.0),
-                    decoration: BoxDecoration(
-                      color: ColorsUI.lime,
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                    child: Text(
-                      "Отсканировать QR-код",
-                      style:
-                          textTheme.bodyLarge!.copyWith(color: ColorsUI.black),
-                    ),
+                  BlocBuilder<QrBloc, QrState>(
+                    builder: (context, state) {
+                      if (state is QrInitial) {
+                        if (state.qr == null || state.qr == "") {
+                          return GestureDetector(
+                            onTap: () => Navigator.of(context).push(
+                              PageRouteBuilder(
+                                pageBuilder: (_, __, ___) => QrViewScreeen(),
+                                transitionDuration: Duration(milliseconds: 370),
+                                transitionsBuilder: (_, a, __, c) =>
+                                    FadeTransition(opacity: a, child: c),
+                              ),
+                            ),
+                            child: Container(
+                              padding: EdgeInsets.all(2.0),
+                              decoration: BoxDecoration(
+                                color: ColorsUI.lime,
+                                borderRadius: BorderRadius.circular(4.0),
+                              ),
+                              child: Text(
+                                "Отсканировать QR-код",
+                                style: textTheme.bodyLarge!
+                                    .copyWith(color: ColorsUI.black),
+                              ),
+                            ),
+                          );
+                        }
+                        return GestureDetector(
+                          onTap: () => (
+                            Navigator.of(context).push(
+                              PageRouteBuilder(
+                                pageBuilder: (_, __, ___) => QrViewScreeen(),
+                                transitionDuration: Duration(milliseconds: 370),
+                                transitionsBuilder: (_, a, __, c) =>
+                                    FadeTransition(opacity: a, child: c),
+                              ),
+                            ),
+                          ),
+                          child: QrImageView(
+                            size: size.width * 0.2,
+                            data: state.qr!,
+                            backgroundColor: Colors.white,
+                          ),
+                        );
+                      } else {
+                        return SizedBox();
+                      }
+                    },
                   ),
                   SizedBox(
                     height: size.height * 0.12,
