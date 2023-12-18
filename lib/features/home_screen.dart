@@ -35,8 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isGameSelected = false;
 
   List<Widget> pages = [
-    NewsScreen(),
-    PlacesScreen(),
+    const Placeholder(),
+    const PlacesScreen(),
     const SupportScreen(),
     const ProfilScreen(),
   ];
@@ -62,21 +62,27 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() {
             isGameSelected = true;
           });
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => PlayScreen()));
+          Navigator.of(context).push(
+            PageRouteBuilder(
+              pageBuilder: (_, __, ___) => const PlayScreen(),
+              transitionDuration: const Duration(milliseconds: 370),
+              transitionsBuilder: (_, a, __, c) =>
+                  FadeTransition(opacity: a, child: c),
+            ),
+          );
         },
         backgroundColor: ColorsUI.lime,
         shape: const CircleBorder(),
         child: Padding(
-          padding: EdgeInsets.all(6.0),
+          padding: const EdgeInsets.all(6.0),
           child: SvgPicture.asset(
             "asset/icons/game_outline.svg",
             colorFilter: (isGameSelected)
-                ? ColorFilter.mode(
+                ? const ColorFilter.mode(
                     ColorsUI.lime,
                     BlendMode.srcIn,
                   )
-                : ColorFilter.mode(
+                : const ColorFilter.mode(
                     ColorsUI.white,
                     BlendMode.srcIn,
                   ),
@@ -96,27 +102,27 @@ class _HomeScreenState extends State<HomeScreen> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.newspaper,
+              Icons.home,
             ),
-            label: 'Новости',
+            label: 'Дом',
           ),
           BottomNavigationBarItem(
             icon: Padding(
               padding: EdgeInsets.only(right: 8.0),
               child: Icon(
-                Icons.location_on,
+                Icons.newspaper,
               ),
             ),
-            label: 'Места   ',
+            label: 'Новости   ',
           ),
           BottomNavigationBarItem(
             icon: Padding(
               padding: EdgeInsets.only(left: 8.0),
               child: Icon(
-                Icons.headphones,
+                Icons.location_on,
               ),
             ),
-            label: '  Поддержка',
+            label: '   Места',
           ),
           BottomNavigationBarItem(
             icon: Icon(

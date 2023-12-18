@@ -34,8 +34,11 @@ class _AuthScreenState extends State<AuthScreen> {
         listener: (context, state) {
           if (state is AuthSuccess) {
             Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => HomeScreen(),
+              PageRouteBuilder(
+                pageBuilder: (_, __, ___) => HomeScreen(),
+                transitionDuration: Duration(milliseconds: 370),
+                transitionsBuilder: (_, a, __, c) =>
+                    FadeTransition(opacity: a, child: c),
               ),
             );
           }

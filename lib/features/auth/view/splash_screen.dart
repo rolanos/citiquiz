@@ -19,8 +19,11 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(
       Duration(seconds: 2),
       () => Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const AuthScreen(),
+        PageRouteBuilder(
+          pageBuilder: (_, __, ___) => AuthScreen(),
+          transitionDuration: Duration(milliseconds: 370),
+          transitionsBuilder: (_, a, __, c) =>
+              FadeTransition(opacity: a, child: c),
         ),
       ),
     );
