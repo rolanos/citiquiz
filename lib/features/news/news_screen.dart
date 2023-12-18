@@ -2,6 +2,7 @@ import 'package:citiquiz/features/core/colors.dart';
 import 'package:citiquiz/features/core/widget/custom_card.dart';
 import 'package:citiquiz/features/core/widget/title_card.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class NewsScreen extends StatelessWidget {
   const NewsScreen({super.key});
@@ -70,6 +71,14 @@ class NewsScreen extends StatelessWidget {
                     image: Image.asset(
                       "asset/images/news5.jpg",
                     ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),
+                  Lottie.asset(
+                    "asset/animations/news_all.json",
+                    repeat: true,
+                    width: MediaQuery.of(context).size.width * 0.35,
                   ),
                 ],
               ),

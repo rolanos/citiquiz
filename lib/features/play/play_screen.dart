@@ -1,5 +1,6 @@
 import 'package:citiquiz/features/core/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class PlayScreen extends StatelessWidget {
   const PlayScreen({super.key});
@@ -12,8 +13,9 @@ class PlayScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(
-            "asset/images/cross.png",
+          Lottie.asset(
+            "asset/animations/animation.json",
+            repeat: true,
             width: MediaQuery.of(context).size.width * 0.35,
           ),
           SizedBox(

@@ -85,7 +85,6 @@ class CustomCard extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomRight,
                     child: SizedBox(
-                      //height: size.height * 0.11,
                       child: ClipRRect(
                           borderRadius: BorderRadius.all(
                             Radius.circular(6.0),
