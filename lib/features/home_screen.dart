@@ -1,4 +1,5 @@
 import 'package:citiquiz/features/core/colors.dart';
+import 'package:citiquiz/features/main/main_screen.dart';
 import 'package:citiquiz/features/support/support_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -18,11 +19,11 @@ class HomeScreen extends StatefulWidget {
 getAppbarTitle(int index) {
   switch (index) {
     case 0:
-      return "Новости";
+      return null;
     case 1:
-      return "Места";
+      return "Новости";
     case 2:
-      return "О нас";
+      return "Места";
     case 3:
       return "Профиль";
     default:
@@ -35,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isGameSelected = false;
 
   List<Widget> pages = [
-    const Placeholder(),
+    const MainScreen(),
     NewsScreen(),
     const PlacesScreen(),
     const ProfilScreen(),
@@ -43,19 +44,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Padding(
-          padding: const EdgeInsets.only(left: 8.0, top: 8.0),
-          child: Text(
-            getAppbarTitle(navIndex),
-            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  color: ColorsUI.black,
-                  fontSize: 32,
+      appBar: getAppbarTitle(navIndex) == null
+          ? null
+          : AppBar(
+              backgroundColor: Colors.white,
+              title: Padding(
+                padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                child: Text(
+                  getAppbarTitle(navIndex),
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        color: ColorsUI.black,
+                        fontSize: 32,
+                      ),
                 ),
-          ),
-        ),
-      ),
+              ),
+            ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
