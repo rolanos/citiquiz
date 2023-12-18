@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:citiquiz/features/core/colors.dart';
+import 'package:citiquiz/features/main/story.dart';
 import 'package:citiquiz/features/main/widgets/partner_widget.dart';
 import 'package:citiquiz/features/main/widgets/story_widget.dart';
 import 'package:citiquiz/features/qr/bloc/qr_bloc.dart';
@@ -19,28 +20,24 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<StoryItem> storyItems = [
-      StoryItem.inlineImage(
+      StoryItem.pageImage(
         url:
             "https://mykaleidoscope.ru/x/uploads/posts/2022-09/1663200247_14-mykaleidoscope-ru-p-gorod-almati-kazakhstan-oboi-15.jpg",
         controller: controller,
-        roundedBottom: true,
       ),
-      StoryItem.inlineImage(
+      StoryItem.pageImage(
         url:
             "https://static.tildacdn.com/tild3561-3066-4965-b234-636538356561/_3.jpg",
         controller: controller,
-        roundedBottom: true,
       ),
-      StoryItem.inlineImage(
+      StoryItem.pageImage(
         url:
             "https://mykaleidoscope.ru/x/uploads/posts/2022-09/1663219067_19-mykaleidoscope-ru-p-kazakhstan-stolitsa-almati-pinterest-19.jpg",
         controller: controller,
-        roundedBottom: true,
       ),
-      StoryItem.inlineImage(
+      StoryItem.pageImage(
         url:
             "https://sportishka.com/uploads/posts/2022-04/1650612019_66-sportishka-com-p-gorod-almati-kazakhstan-krasivo-foto-72.jpg",
-        roundedBottom: true,
         controller: controller,
       ),
     ];
@@ -154,19 +151,40 @@ class MainScreen extends StatelessWidget {
                     height: size.height * 0.12,
                   ),
                   SizedBox(
-                    height: size.width,
-                    child: StoryView(
-                        storyItems: storyItems,
-                        controller: controller, // pass controller here too
-                        repeat: true, // should the stories be slid forever
-                        onComplete: () {},
-                        onVerticalSwipeComplete: (direction) {
-                          if (direction == Direction.down) {
-                            Navigator.pop(context);
-                          }
-                        } // To disable vertical swipe gestures, ignore this parameter.
-                        // Preferrably for inline story view.f
+                    height: size.height * 0.2,
+                    child: GestureDetector(
+                      onTap: () => Navigator.of(context).push(
+                        PageRouteBuilder(
+                          pageBuilder: (_, __, ___) => StoryWidget(
+                            storyItems: storyItems,
+                            controller: controller,
+                          ),
+                          transitionDuration: const Duration(milliseconds: 370),
+                          transitionsBuilder: (_, a, __, c) =>
+                              FadeTransition(opacity: a, child: c),
                         ),
+                      ),
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        children: [
+                          StoryWidgetContainer(
+                            text: "Сторис 1",
+                            assetPath: 'asset/images/almaty.jpg',
+                          ),
+                          SizedBox(
+                            width: 8.0,
+                          ),
+                          StoryWidgetContainer(
+                            text: "Сторис 2",
+                            assetPath: 'asset/images/almaty.jpg',
+                          ),
+                          SizedBox(
+                            width: 8.0,
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 24.0,
